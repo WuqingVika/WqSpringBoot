@@ -1,0 +1,5 @@
+server:
+  port: 8081
+girl:
+  age: 22
+  size: B
