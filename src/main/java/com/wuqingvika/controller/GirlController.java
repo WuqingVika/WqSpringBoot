@@ -1,5 +1,6 @@
 package com.wuqingvika.controller;
 import com.wuqingvika.domain.Girl;
+import com.wuqingvika.domain.Result;
 import com.wuqingvika.repository.GirlRepository;
 import com.wuqingvika.service.GirlService;
 import org.slf4j.Logger;
@@ -32,15 +33,23 @@ public class GirlController {
         return  girlRepository.findOne(id);
     }
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
         /*Girl girl=new Girl();
         girl.setAge(age);
         girl.setCupSize(cupSize);*/
         if(bindingResult.hasErrors()){
-            System.out.print( bindingResult.getFieldError().getDefaultMessage());
-            return  null;
-        }
-        return girlRepository.save(girl);
+            //System.out.print( bindingResult.getFieldError().getDefaultMessage());
+            Result result=new Result();
+            result.setCode(0);
+            result.setMessage(bindingResult.getFieldError().getDefaultMessage());
+            return result;
+            }
+            Result result=new Result();
+            result.setMessage("成功");
+            result.setCode(1);
+            result.setData(girlRepository.save(girl));
+
+        return result;
     }
     @PutMapping(value = "/girls/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,
