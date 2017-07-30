@@ -3,6 +3,7 @@ import com.wuqingvika.domain.Girl;
 import com.wuqingvika.domain.Result;
 import com.wuqingvika.repository.GirlRepository;
 import com.wuqingvika.service.GirlService;
+import com.wuqingvika.util.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +35,11 @@ public class GirlController {
     }
     @PostMapping(value = "/girls")
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
-        /*Girl girl=new Girl();
-        girl.setAge(age);
-        girl.setCupSize(cupSize);*/
         if(bindingResult.hasErrors()){
-            //System.out.print( bindingResult.getFieldError().getDefaultMessage());
-            Result result=new Result();
-            result.setCode(0);
-            result.setMessage(bindingResult.getFieldError().getDefaultMessage());
-            return result;
-            }
-            Result result=new Result();
-            result.setMessage("成功");
-            result.setCode(1);
-            result.setData(girlRepository.save(girl));
-
-        return result;
+           // return null;
+            return ResultUtil.error(0,bindingResult.getFieldError().getDefaultMessage());
+        }
+        return ResultUtil.success(girlRepository.save(girl));
     }
     @PutMapping(value = "/girls/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,
@@ -72,5 +62,10 @@ public class GirlController {
     @PostMapping(value = "/girls/two")
     public void insertTwo(){
         girlService.addTwoGirls();
+    }
+
+    @GetMapping(value = "/girls/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception {
+        girlService.getAge(id);
     }
 }
