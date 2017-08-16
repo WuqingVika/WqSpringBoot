@@ -10,19 +10,31 @@ spring:
       hibernate:
         ddl-auto: update
       show-sql: true
+
   #thymeleaf:
    #    mode: HTML5
    #   encoding: UTF-8
     #   content-type: text/html
     #   cache: false
+
 # freemarker
-spring.freemarker.allow-request-override: false
-spring.freemarker.cache: true
-spring.freemarker.check-template-location: true
-spring.freemarker.charset: UTF-8
-spring.freemarker.content-type: text/html
-spring.freemarker.expose-request-attributes: false
-spring.freemarker.expose-session-attributes: false
-spring.freemarker.expose-spring-macro-helpers: false
-#spring.freemarker.prefix=
-spring.freemarker.suffix: .html
+#spring.freemarker.allow-request-override: false
+#spring.freemarker.cache: true
+#spring.freemarker.check-template-location: true
+#spring.freemarker.charset: UTF-8
+#spring.freemarker.content-type: text/html
+#spring.freemarker.expose-request-attributes: false
+#spring.freemarker.expose-session-attributes: false
+#spring.freemarker.expose-spring-macro-helpers: false
+##spring.freemarker.prefix=
+#spring.freemarker.suffix: .html
+
+# # VELOCITY TEMPLATES (VelocityAutoConfiguration)
+# spring.velocity.content-type: text/html
+# spring.velocity.enabled: true
+# spring.velocity.charset: UTF-8
+# spring.velocity.properties.input.encoding: UTF-8
+# spring.velocity.properties.output.encoding: UTF-8
+# spring.velocity.resourceLoaderPath: classpath:/templates/
+# spring.velocity.suffix: .vm
+# #spring.velocity.toolbox-config-location: /WEB-INF/toolbox.xml

@@ -1,0 +1,11 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>
+        velocity
+    </title>
+</head>
+<body>
+<h1>Hello ${host} from
+    velocity!</h1>
+</body>
